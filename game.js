@@ -10,11 +10,12 @@ var started = false;
 
 //function that is triggered by typing 'a' (to start the game)
 
-$(document).keydown(function(){
+$(".btn").click(function(){
   if(!started){
       $("#level-title").text("Level " + level);
       nextSequence();
       started = true;
+      $(".btn").hide();
   }
 });
 
@@ -36,7 +37,7 @@ function nextSequence(){
 
 //functon that stores the players pattern in game
 
-$(".btn").click(function(){
+$(".bttn").click(function(){
 
   var userChosenColor = $(this).attr("id");
   userClickedPattern.push(userChosenColor);
@@ -77,12 +78,13 @@ function checkAnswer(currentLevel){
   else{
     playSound("wrong");
     $("body").addClass("game-over");
-    $("#level-title").text("Game Over. Press any key to restart");
+    $("#level-title").text("Game Over");
 
     setTimeout(function(){
       $("body").removeClass("game-over");
     },200);
-
+    $(".btn").text("Replay");
+    $(".btn").show();
     startOver();
   }
 }
